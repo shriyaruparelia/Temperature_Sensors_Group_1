@@ -10,30 +10,25 @@ from pathlib import Path
 
 
 VIDEO_PATH = r"experiment_1_2.mp4"
-
-# Output Excel file
 OUTPUT_EXCEL = r"Trial1_9Dec.xlsx"
 
-# How often to sample the video (in seconds)
+
 SAMPLE_EVERY_SECONDS = 3.0  # e.g. every 1 second
 
-# Path to Tesseract executable (Windows)
-# Change this to wherever you installed Tesseract
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-# Region Of Interest (ROI) where the numbers are on screen
-# (x, y, width, height) in pixels
-# You MUST adjust these numbers to match your video.
-ROI_A = (180, 150, 50, 100)  # example values – change!
-ROI_B = (230, 150, 50, 100)   # example, digit 2
-ROI_C = (280, 150, 50, 100)   # example, digit 3
+# Region Of Interest (ROI)
+
+ROI_A = (180, 150, 50, 100) 
+ROI_B = (230, 150, 50, 100)  
+ROI_C = (280, 150, 50, 100)  
 
 SHOW_SAMPLE_FRAME = True
 
-# If digits are white on black, set True
+
 INVERT_FOR_OCR = False
 
-# Smoothing: max allowed jump between *confident* frames
+# Smoothing
 MAX_STEP = 1.0
 
 # Save first N crops for debugging (per digit)
@@ -44,8 +39,6 @@ TESS_CONFIG_DIGIT = r"--psm 10 -c tessedit_char_whitelist=0123456789"
 
 # Fallback digit if we have absolutely nothing (first frames)
 FALLBACK_DIGIT = 0
-
-# =================================================
 
 
 def ocr_single_digit(roi_bgr):
@@ -242,3 +235,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
