@@ -15,7 +15,7 @@ EXPECTED_MAX_VALUE = 200.0
 EXPECTED_DECIMALS = 1
 
 # Invert thresholded image?
-INVERT_FOR_OCR = False  # try True if results are still bad
+INVERT_FOR_OCR = False  # try True
 
 
 VIDEO_PATH = r"experiment_1_2.mp4"
@@ -209,4 +209,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
