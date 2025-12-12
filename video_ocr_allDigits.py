@@ -8,27 +8,22 @@ import math
 from pathlib import Path
 
 
-EXPECTED_MIN_VALUE = 0.0     # e.g. 30.0 if you know it's around 30–80
-EXPECTED_MAX_VALUE = 200.0   # e.g. 80.0 if you know it's around 50–60
+EXPECTED_MIN_VALUE = 0.0     
+EXPECTED_MAX_VALUE = 200.0   
 
-# How many decimal places you expect (52.1 -> 1 decimal place)
+
 EXPECTED_DECIMALS = 1
 
-# Invert thresholded image? (depends on whether digits are bright on dark)
+# Invert thresholded image?
 INVERT_FOR_OCR = False  # try True if results are still bad
 
 
-# Path to your video
 VIDEO_PATH = r"experiment_1_2.mp4"
 
-# Output Excel file
 OUTPUT_EXCEL = r"Trial1_9Dec.xlsx"
 
-# How often to sample the video (in seconds)
 SAMPLE_EVERY_SECONDS = 3.0  # e.g. every 1 second
 
-# Path to Tesseract executable (Windows)
-# Change this to wherever you installed Tesseract
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 # Region Of Interest (ROI) where the numbers are on screen
@@ -43,8 +38,6 @@ SHOW_SAMPLE_FRAME = True
 TESS_CONFIG = r"--psm 7 -c tessedit_char_whitelist=0123456789."
 
 DEBUG_SAVE_FIRST_N = 10
-
-# ===============================
 
 
 
@@ -71,7 +64,7 @@ def clean_ocr_to_number(text: str) -> float | None:
     if not cleaned:
         return None
 
-    # Case 1: there is already a dot → try parse directly
+    # Case 1: there is already a dot
     if "." in cleaned:
         try:
             val = float(cleaned)
@@ -80,7 +73,7 @@ def clean_ocr_to_number(text: str) -> float | None:
         except ValueError:
             pass  # fall through to digit-only handling
 
-    # Case 2: no dot or the dot version failed → assume fixed decimal position
+    # Case 2: no dot or the dot version failed
     # Extract just digits
     digits = re.sub(r"[^0-9]", "", cleaned)
     if not digits:
@@ -216,3 +209,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
